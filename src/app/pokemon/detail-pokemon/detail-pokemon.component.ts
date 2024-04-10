@@ -6,6 +6,7 @@ import { PokemonTypeColorPipe } from '../pokemon-type-color.pipe';
 import { LoaderComponent } from '../loader/loader.component';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
 import {Title} from "@angular/platform-browser";
+import {AuthService} from "../../auth.service";
 
 @Component({
     selector: 'app-detail-pokemon',
@@ -15,9 +16,12 @@ import {Title} from "@angular/platform-browser";
 })
 export class DetailPokemonComponent implements OnInit{
   pokemon: Pokemon|undefined;
+  auth: AuthService;
 
-  constructor(private route: ActivatedRoute, private router: Router, private pokemonService: PokemonService, private title: Title) { }
+  constructor(private route: ActivatedRoute, private router: Router, private pokemonService: PokemonService, private title: Title, private authService: AuthService) { }
   ngOnInit() {
+    this.auth = this.authService;
+
     const pokemonId: string|null = this.route.snapshot.paramMap.get('id');
 
     if (pokemonId) {

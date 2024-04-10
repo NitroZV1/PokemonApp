@@ -1,6 +1,5 @@
 import {importProvidersFrom} from '@angular/core';
 import {AppComponent} from './app/app.component';
-import {AuthGuard} from './app/auth.guard';
 import {provideRouter, Routes} from '@angular/router';
 import {InMemoryDataService} from './app/in-memory-data.service';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
@@ -12,7 +11,6 @@ const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     {
         path: '',
-        canActivate: [AuthGuard],
         loadChildren: () => import('./app/pokemon/pokemon.routes')
     },
     {

@@ -1,7 +1,13 @@
 <nav>
     <div class="nav-wrapper teal">
-        <a href="#" class="brand-logo center">
+        <a routerLink="/pokemons" class="brand-logo center">
             Pokédex
+        </a>
+        <a *ngIf="auth.isLoggedIn" routerLink="/pokemons" class="brand-logo right" (click)="auth.logout()">
+            Déconnexion
+        </a>
+        <a *ngIf="!auth.isLoggedIn" routerLink="/login" class="brand-logo right">
+            Connexion
         </a>
     </div>
 </nav>
