@@ -17,11 +17,13 @@ const routes: Routes = [
     },
     {
         path: 'login',
-        loadComponent: () => import("./app/login/login.component").then(module => module.LoginComponent)
+        loadComponent: () => import("./app/login/login.component").then(module => module.LoginComponent),
+        title: 'Login'
     },
     {
         path: '**',
-        loadComponent: () => import("./app/page-not-found/page-not-found.component").then(module => module.PageNotFoundComponent)
+        loadComponent: () => import("./app/page-not-found/page-not-found.component").then(module => module.PageNotFoundComponent),
+        title: 'Page not found'
     }
 ];
 

@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {PokemonService} from "../pokemon.service";
 import { FormPokemonComponent } from '../form-pokemon/form-pokemon.component';
 import { NgIf } from '@angular/common';
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-edit-pokemon',
@@ -21,14 +22,17 @@ import { NgIf } from '@angular/common';
 export class EditPokemonComponent implements OnInit{
   pokemon: Pokemon|undefined;
 
-  constructor(private route: ActivatedRoute, private pokemonService: PokemonService) { }
+  constructor(private route: ActivatedRoute, private pokemonService: PokemonService, private title: Title) { }
 
   ngOnInit() {
     const pokemonId: string|null = this.route.snapshot.paramMap.get('id');
 
     if (pokemonId) {
       this.pokemonService.getPokemonById(+pokemonId)
-          .subscribe(pokemon => this.pokemon = pokemon);
+          .subscribe(pokemon => {
+            this.pokemon = pokemon;
+            this.initTitle(pokemon);
+          });
     } else {
       this.pokemon = undefined
     }
@@ -38,4 +42,12 @@ export class EditPokemonComponent implements OnInit{
     return `http://assets.pokemon.com/assets/cms2/img/pokedex/full/${pictureId}.png`;
   }
 
+  initTitle(pokemon: Pokemon|undefined) {
+    if (!pokemon) {
+      this.title.setTitle('Pokémon not found');
+      return;
+    }
+
+    this.title.setTitle(`Editer ${pokemon.name}`);
+  }
 }

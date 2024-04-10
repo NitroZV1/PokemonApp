@@ -7,15 +7,17 @@ export default [{
     children: [
         {
             path: 'edit/pokemon/:id',
-            loadComponent: () => import('./edit-pokemon/edit-pokemon.component').then(module => module.EditPokemonComponent)
+            loadComponent: () => import('./edit-pokemon/edit-pokemon.component').then(module => module.EditPokemonComponent),
         },
         {
             path: 'add/pokemon',
-            loadComponent: () => import('./add-pokemon/add-pokemon.component').then(module => module.AddPokemonComponent)
+            loadComponent: () => import('./add-pokemon/add-pokemon.component').then(module => module.AddPokemonComponent),
+            title: 'Ajouter'
         },
         {
             path: 'pokemons',
-            loadComponent: () => import('./list-pokemon/list-pokemon.component').then(module => module.ListPokemonComponent)
+            loadComponent: () => import('./list-pokemon/list-pokemon.component').then(module => module.ListPokemonComponent),
+            title: 'Pokédex'
         },
         {
             path: 'pokemon/:id',

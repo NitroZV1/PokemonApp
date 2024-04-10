@@ -5,6 +5,7 @@ import {PokemonService} from "../pokemon.service";
 import { PokemonTypeColorPipe } from '../pokemon-type-color.pipe';
 import { LoaderComponent } from '../loader/loader.component';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-detail-pokemon',
@@ -15,13 +16,16 @@ import { NgIf, NgFor, DatePipe } from '@angular/common';
 export class DetailPokemonComponent implements OnInit{
   pokemon: Pokemon|undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router, private pokemonService: PokemonService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private pokemonService: PokemonService, private title: Title) { }
   ngOnInit() {
     const pokemonId: string|null = this.route.snapshot.paramMap.get('id');
 
     if (pokemonId) {
       this.pokemonService.getPokemonById(+pokemonId)
-          .subscribe(pokemon => this.pokemon = pokemon);
+          .subscribe(pokemon => {
+            this.pokemon = pokemon;
+            this.initTitle(pokemon);
+          });
     }
   }
 
@@ -40,5 +44,14 @@ export class DetailPokemonComponent implements OnInit{
 
   public getPokemonImageUrl(pictureId: string): string {
     return `http://assets.pokemon.com/assets/cms2/img/pokedex/full/${pictureId}.png`;
+  }
+
+  initTitle(pokemon: Pokemon|undefined) {
+    if (!pokemon) {
+      this.title.setTitle('Pokémon not found');
+      return;
+    }
+
+    this.title.setTitle(pokemon.name);
   }
 }
