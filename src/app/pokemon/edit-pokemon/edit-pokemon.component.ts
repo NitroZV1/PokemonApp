@@ -2,17 +2,21 @@ import {Component, OnInit} from '@angular/core';
 import {Pokemon} from "../pokemon";
 import {ActivatedRoute} from "@angular/router";
 import {PokemonService} from "../pokemon.service";
+import { FormPokemonComponent } from '../form-pokemon/form-pokemon.component';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-edit-pokemon',
-  template: `
+    selector: 'app-edit-pokemon',
+    template: `
     <h2 class="center">Editer {{ pokemon?.name }}</h2>
     <p *ngIf="pokemon" class="center">
       <img [src]=getPokemonImageUrl(pokemon.picture)>
     </p>
     <app-form-pokemon *ngIf="pokemon" [pokemon]="pokemon"></app-form-pokemon>
   `,
-  styles: ``
+    styles: ``,
+    standalone: true,
+    imports: [NgIf, FormPokemonComponent]
 })
 export class EditPokemonComponent implements OnInit{
   pokemon: Pokemon|undefined;

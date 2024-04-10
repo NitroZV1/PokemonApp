@@ -12,19 +12,17 @@ import {InMemoryDataService} from "./in-memory-data.service";
 import {LoginComponent} from "./login/login.component";
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        PageNotFoundComponent,
-        LoginComponent,
-    ],
+    declarations: [AppComponent],
     imports: [
         BrowserModule,
-        FormsModule, 
+        FormsModule,
         HttpClientModule,
         HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
         PokemonModule,
         RouterOutlet,
         AppRoutingModule,
+        PageNotFoundComponent,
+        LoginComponent,
     ],
     bootstrap: [AppComponent]
 })

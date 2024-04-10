@@ -22,24 +22,22 @@ export const pokemonRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    PokemonTypeColorPipe,
-    DetailPokemonComponent,
-    BorderCardDirective,
-    ListPokemonComponent,
-    FormPokemonComponent,
-    EditPokemonComponent,
-    AddPokemonComponent,
-    SearchPokemonComponent,
-    LoaderComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule.forChild(pokemonRoutes),
-  ],
-  providers: [
-    PokemonService
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule.forChild(pokemonRoutes),
+        PokemonTypeColorPipe,
+        DetailPokemonComponent,
+        BorderCardDirective,
+        ListPokemonComponent,
+        FormPokemonComponent,
+        EditPokemonComponent,
+        AddPokemonComponent,
+        SearchPokemonComponent,
+        LoaderComponent,
+    ],
+    providers: [
+        PokemonService
+    ]
 })
 export class PokemonModule { }
